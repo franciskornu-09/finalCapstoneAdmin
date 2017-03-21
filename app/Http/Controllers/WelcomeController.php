@@ -30,7 +30,15 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		return view('auth/login');
 	}
+
+	public function getSignOut() {
+
+    Auth::logout();
+    Session::flush();
+    return Redirect::route('auth/login');
+
+}
 
 }

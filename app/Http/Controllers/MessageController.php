@@ -2,19 +2,21 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller {
+class MessageController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		return view('index');
+	public function index($id)
+	{	
+		$user = $id;
+		$events = DB::select( DB::raw("SELECT id,email from users where id ='$user'"));
+		return view('message',compact('events'));
 	}
 
 	/**
@@ -22,9 +24,16 @@ class DashboardController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
 		//
+		$id = $request->get('num');
+		$topic=$request->get('topic');
+		$mail = $request->get('message');
+
+		$events = DB::select( DB::raw("insert into msg_table set messages = '$mail', users_id =$id,topic='$topic',choices='no', created_at=NOW(), updated_at=NOW()"));
+		return view('index');
+		
 	}
 
 	/**
@@ -68,7 +77,6 @@ class DashboardController extends Controller {
 	public function update($id)
 	{
 		//
-		
 	}
 
 	/**

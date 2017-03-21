@@ -3,9 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Admin;
+use App\markers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 class TableController extends Controller {
 
 	/**
@@ -26,6 +28,8 @@ class TableController extends Controller {
 	public function create()
 	{
 		//
+		$events = DB::select( DB::raw("SELECT * from event_folders"));
+		return view('addlocation',compact('events'));
 	}
 
 	/**
@@ -33,9 +37,35 @@ class TableController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		$destinationPath = '../images/';
+		$eventName = $request->get('event');
+		$lat = $request->get('lat');
+		$lng = $request->get('lng');
+		$address=$request->get('address');
+		$number = $request->get('fig');
+		$type = 'bar';
+		// $file = Request::file('image');
+		// if (Request::hasFile('photo'))
+		// {
+		//     //
+		//     Request::file('photo')->move($destinationPath);
+
+		// 	Request::file('photo')->move($destinationPath, $eventName);
+		// }
+
+		$location = new markers;
+		$location->quantity=$number;
+		$location->name=$eventName;
+		$location->address=$address;
+		$location->lat=$lat;
+		$location->lng=$lng;
+		$location->type=$type;
+		$location->save();
+
+		return view('index');
 	}
 
 	/**
@@ -75,8 +105,7 @@ class TableController extends Controller {
 		$reg_amount = $request->get('regular');
 		$vip_amount = $request->get('vip');
 		$number = $request->get('ticketNumber');
-		$image = $request->file('image');
-
+		
 		 $input->name=$eventName;
 		 $input->description=$description;
 		 $input->regular_ticket=$reg_amount;
@@ -87,56 +116,6 @@ class TableController extends Controller {
         $input->description = $request->description;
 		$input->save();
 		
-				// $new_path =  public_path().'/img/logo/'. Admin::get('image').'/'.$user->logo_path;
-    //             $old_path =  public_path().'/img/logo/'. $user->username.'/'.$user->logo_path;
-    //             $move     =  File::move($new_path, $old_path);
-    //             $delete   =  File::delete($old_path);
-
-    //              $mobile = $request->all();
-    // $Mob = Admin::create($mobile);
-    $imageName = $input->image.'.'.$request->file('image')->getClientOriginalExtension();
-    $request->file('image')->move(public_path().'/public/images/products/',$imageName);
-    //return redirect('mobile');
-		// $imageName = $input->image . '.' . 
-  //       $request->file('image')->getClientOriginalExtension();
-
-	 //    $request->file('image')->move(
-	 //        base_path() . '/public/images/products/', $imageName
-	 //    );
-
-		// $file = rand(1000,100000)."-".$_FILES['file']['name']; $file_loc = $_FILES['file']['tmp_name']; 
-		// $file_size = $_FILES['file']['size']; 
-		// $file_type = $_FILES['file']['type']; 
-		// $folder="uploads/";
-		// $new_size = $file_size/1024;
-		// $new_file_name = strtolower($file);
-		// $final_file=str_replace(' ','-',$new_file_name);
-		// if(move_uploaded_file($file_loc,$folder.$final_file)) { 
-		// 	$sql="INSERT INTO event_folders SET image='$final_file'"; 
-		// 	mysql_query($sql);
-		// }
-		
-	
-            //$file = $image;
-            //getting timestamp
-            //$timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
-            
-            // $name = $timestamp. '-' .$file->getClientOriginalName();
-            
-            // $image->imagePath = $name;
-
-            // $file->move(public_path().'/images/', $name);
-        // $image = Admin::file('image');
-        // $filename = date('Y-m-d-H:i:s')."-".$image->getClientOriginalName();
-        //Storage::disk('local')->put('$filename', '$image');
-        //Storage::move('$image','imageFile/$filename');
-        //$inputPath->image = 'imageFile/'. $filename;
-
-        // $input->save();
-
-		//Storage::put('/imageFile', $image);
-	    //$request->file('image')->move($destinationPath, $fileName);
-		//$photo->move($destinationPath, $chooseYourFileName);
 
 		return view('index');
 	}

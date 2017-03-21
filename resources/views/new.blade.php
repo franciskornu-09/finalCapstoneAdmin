@@ -4,7 +4,7 @@
 
       <div class="templatemo-content-wrapper">
         <div class="templatemo-content">
-          <ol class="breadcrumb">
+          <ol class="breadcrumb" style="background: #D9EDF7">
             <li><a href="{{action("DashboardController@index")}}">Dashboard</a></li>
             <li class="active">Events Tab</li>
           </ol>
@@ -32,11 +32,6 @@
                       <div class="form-group">
                         <label for="vip">Vip Ticket Amount</label>
                        <input type="number" class="form-control" id="vip" name="vip" placeholder="Amount (GH$)">
-                      </div>
-                       <div class="form-group">
-                        <label for="image">File input</label>
-                        <input type="file" class="form-control-file" name="image" id="image" aria-describedby="image">
-                        <small id="image" class="form-text text-muted">Image size limit (5mb)</small>
                       </div> 
                       <div class="form-check">
                        <label for="ticketNumber">Original Ticket Number Avaible</label>

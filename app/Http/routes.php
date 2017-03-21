@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'DashboardController@index');
 
@@ -25,7 +25,32 @@ Route::post('insert','TableController@update');
 
 Route::get('add','TableController@index');
 
+Route::get('addmap','TableController@create');
+
+Route::post('addLoc','TableController@store');
+
+Route::post('message','MessageController@create');
+
+Route::get('graph','GraphController@index');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('/account/sign-out', array(
+        'as' => 'account-sign-out',
+        'uses' => 'WelcomeController@getSignOut'
+    ));
+
+$router->get('/index/{id}',[
+    'uses' => 'MessageController@index',
+    'as'   => 'switch'
+]);
+
+Route::post('/update/{{id}}',[
+    'uses' => 'TableController@update', 
+    'as' => 'send'
+]);
+
+

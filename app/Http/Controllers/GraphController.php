@@ -2,10 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller {
+class GraphController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,8 @@ class DashboardController extends Controller {
 	 */
 	public function index()
 	{
-		return view('index');
+		$events = DB::select( DB::raw("SELECT numberOfTickets,name,COUNT(numberOfTickets) AS numberTickets FROM transaction GROUP BY name"));
+		return view('charts',compact('events'));
 	}
 
 	/**
@@ -68,7 +69,6 @@ class DashboardController extends Controller {
 	public function update($id)
 	{
 		//
-		
 	}
 
 	/**
