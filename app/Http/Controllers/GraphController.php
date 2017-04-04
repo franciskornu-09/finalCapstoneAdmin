@@ -14,7 +14,7 @@ class GraphController extends Controller {
 	 */
 	public function index()
 	{
-		$events = DB::select( DB::raw("SELECT numberOfTickets,name,COUNT(numberOfTickets) AS numberTickets FROM transaction GROUP BY name"));
+		$events = DB::select( DB::raw("SELECT numberOfTickets,name,COUNT(numberOfTickets) AS numberTickets, MONTH(created_at) AS month FROM transaction GROUP BY name"));
 		return view('charts',compact('events'));
 	}
 

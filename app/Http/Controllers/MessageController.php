@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mail;
 
 class MessageController extends Controller {
 
@@ -32,6 +33,15 @@ class MessageController extends Controller {
 		$mail = $request->get('message');
 
 		$events = DB::select( DB::raw("insert into msg_table set messages = '$mail', users_id =$id,topic='$topic',choices='no', created_at=NOW(), updated_at=NOW()"));
+		
+
+		// Mail::raw('Text to e-mail', function($message)
+		// {
+		//     $message->from('$mail', 'Laravel');
+
+		//     $message->to('franciskornu@gmail.com')->cc('francis.kornu@ashesi.edu.gh');
+		// });
+
 		return view('index');
 		
 	}

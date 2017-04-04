@@ -17,7 +17,7 @@ Route::get('home', 'DashboardController@index');
 
 Route::get('dashboard','DashboardController@index');
 
-Route::get('event','EventController@index');
+Route::get('event','EventController@index'); 
 
 Route::get('users','UserController@index');
 

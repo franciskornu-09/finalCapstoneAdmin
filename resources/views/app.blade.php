@@ -16,9 +16,9 @@ http://www.templatemo.com/preview/templatemo_415_dashboard
 -->
 </head>
 <body>
-  <div class="navbar navbar-inverse" role="navigation">
+  <div class="navbar navbar-inverse" style="background-color: #0099ff" role="navigation">
       <div class="navbar-header">
-        <div class="logo"><h1>Event Publisher &nbsp;<i class="fa fa-bolt" aria-hidden="true"></i></h1></div>
+        <div class="logo"><h1 style="color: white">Event Publisher &nbsp;<i class="fa fa-bolt" aria-hidden="true"></i></h1></div>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
