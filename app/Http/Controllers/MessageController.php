@@ -54,6 +54,8 @@ class MessageController extends Controller {
 	public function store()
 	{
 		//
+		$message = DB::select( DB::raw("select id,topic,message,created_at,sender from admin_alert"));
+		return view('alert',compact('message'));
 	}
 
 	/**

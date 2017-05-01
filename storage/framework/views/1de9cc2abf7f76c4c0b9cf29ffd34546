@@ -1,0 +1,49 @@
+<?php $__env->startSection('content'); ?>
+
+      <div class="templatemo-content-wrapper">
+        <div class="templatemo-content">
+          <ol class="breadcrumb" style="background: #D9EDF7;">
+            <li><a href="<?php echo e(action('DashboardController@index')); ?>">Dashboard</a></li>
+            <li class="active">Users Tab</li>
+          </ol>
+       <div class="templatemo-panels">
+            <div class="row">
+            
+              <div class="col-md-12 col-sm-6 margin-bottom-30">
+                <div class="panel panel-info">
+                  <div class="panel-heading" >Users Table</div>
+                  <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>topic</th>
+                          <th>message</th>
+                          <th>sender</th>
+                          <th>Date Sent</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach($message as $post): ?>
+                        <tr>
+                          <td><?php echo e($post->id); ?></td>
+                          <td><?php echo e($post->topic); ?></td>
+                          <td><?php echo e($post->message); ?></td>
+                          <td><?php echo e($post->sender); ?></td>
+                          <td><?php echo e($post->created_at); ?></td>
+                       </tr> 
+                      <?php endforeach; ?> 
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>   
+                 
+           </div>            
+      </div>
+   </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

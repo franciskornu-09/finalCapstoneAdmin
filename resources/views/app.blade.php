@@ -32,20 +32,10 @@ http://www.templatemo.com/preview/templatemo_415_dashboard
         <ul class="templatemo-sidebar-menu">
           
           <li><a href="{{action('DashboardController@index')}}"><i class="fa fa-home"></i>Dashboard</a></li>
-          <li class="dropdown"><a href="{{action('GraphController@index')}}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cubes"></i>Data Visualization <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Data on Specific Dates</a></li>
-                            <li><a href="#">Data on Numbers Bought</a></li>
-                            <li><a href="#">Dropdown Link 3</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown Link 4</a>
-              </li>
-              </ul>
-              </li>
           <li><a href="{{action('EventController@index')}}"><i class="fa fa-calendar"></i>Manage Events</a></li>
           <li><a href="{{action('UserController@index')}}"><i class="fa fa-users"></i>Manage Users</a></li>
-          <li><a href="preferences.html"><i class="fa fa-cog"></i>Issues</a></li>
-          <li><a href="preferences.html"><i class="fa fa-cog"></i>Profile</a></li>
+          <li><a href="{{action('MessageController@store')}}"><i class="fa fa-cog"></i>Issues</a></li>
+          <li><a href="#"><i class="fa fa-cog"></i>Profile</a></li>
           <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
         </ul>
       </div>
@@ -60,7 +50,7 @@ http://www.templatemo.com/preview/templatemo_415_dashboard
               <h4 class="modal-title" id="myModalLabel">Are you sure you want to sign out?</h4>
             </div>
             <div class="modal-footer">
-              <a href="{{ URL::route('account-sign-out') }}" class="btn btn-primary">Yes</a>
+              <a href="{{ action('EventController@create') }}" class="btn btn-primary">Yes</a>
               <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
           </div>

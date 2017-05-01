@@ -37,8 +37,8 @@
                           <td>{{$post->vip_ticket}}</td>
                           <td>{{$post->original_number}}</td>
                           <td>{{$post->number_left}}</td>
-                          <td><center><a href="{{action("EventController@index")}}" aria-pressed="true" style="color: #a3aa1b"><i class="fa fa-pencil fa-3x"></i></a></center></td>
-                          <td><center><a href="{{action("EventController@index")}}" aria-pressed="true" style="color: #ac0a0a"><i class="fa fa-times fa-3x"></i></a></center></td>            
+                          <td><center><a href="{!! route('eventEdit', ['id'=>$post->id]) !!}" aria-pressed="true" style="color: #a3aa1b"><i class="fa fa-pencil fa-3x"></i></a></center></td>
+                          <td><center><a href="{{action('EventController@index')}}" aria-pressed="true" style="color: #ac0a0a"><i class="fa fa-times fa-3x"></i></a></center></td>            
                        </tr> 
                       @endforeach 
                     </tbody>

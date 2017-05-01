@@ -21,6 +21,7 @@
                           <th>#</th>
                           <th>Name</th>
                           <th>Email</th>
+                          <th>Number#</th>
                           <th>Created On</th>
                           <th>Updated On</th>
                           <th>Edit</th>
@@ -29,17 +30,18 @@
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach($users as $post)
+                      @foreach($user as $post)
                         <tr>
                           <td>{{$post->id}}</td>
                           <td>{{$post->name}}</td>
                           <td>{{$post->email}}</td>
+                          <td>{{$post->phone}}</td>
                           <td>{{$post->created_at}}</td>
                           <td>{{$post->updated_at}}</td>
-                          <td><!-- <a type="button" href="{{action("DashboardController@index")}}" class="btn btn-info" style="border-radius: 10px 10px 10px 10px">Edit</a> -->
-                            <center><a href="{{action("EventController@index")}}" aria-pressed="true" style="color: #a3aa1b"><i class="fa fa-pencil fa-3x"></i></a></center>
+                          <td>
+                            <center><a href="{!! route('userEdit', ['id'=>$post->id]) !!}" aria-pressed="true" style="color: #a3aa1b"><i class="fa fa-pencil fa-3x"></i></a></center>
                           </td>
-                          <td><center><a href="{{action("EventController@index")}}" aria-pressed="true" style="color: #ac0a0a"><i class="fa fa-times fa-3x"></i></a></center></td> 
+                          <td><center><a href="{{action('EventController@index')}}" aria-pressed="true" style="color: #ac0a0a"><i class="fa fa-times fa-3x"></i></a></center></td> 
                           <td><center><a href="{!! route('switch', ['id'=>$post->id]) !!}" aria-pressed="true" style="color: #2d1a99"><i class="fa fa-envelope fa-3x"></i></a></center></td> 
                        </tr> 
                       @endforeach 

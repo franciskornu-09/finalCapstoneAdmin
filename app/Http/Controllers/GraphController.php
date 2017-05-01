@@ -26,6 +26,8 @@ class GraphController extends Controller {
 	public function create()
 	{
 		//
+		$jobs = DB::select( DB::raw("SELECT id,amountPaid,numberOfTickets,name,MONTHNAME(created_at) AS month,DAY(created_at) AS day FROM transaction GROUP BY name"));
+		return view('transaction',compact('jobs'));
 	}
 
 	/**

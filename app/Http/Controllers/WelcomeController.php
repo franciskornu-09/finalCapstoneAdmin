@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
-
+use Auth;
+use Session;
+use Redirect;
 class WelcomeController extends Controller {
 
 	/*

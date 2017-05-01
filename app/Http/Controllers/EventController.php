@@ -15,7 +15,8 @@ class EventController extends Controller {
 	 */
 	public function index()
 	{
-		$text = Admin::all();
+		// $text = Admin::all();
+		$text = DB::select( DB::raw("SELECT * FROM event_folders"));
 		return view('events',compact('text'));
 	}
 
@@ -27,6 +28,7 @@ class EventController extends Controller {
 	public function create()
 	{
 		//
+		return view('auth/login');
 	}
 
 	/**
@@ -34,9 +36,17 @@ class EventController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		$eventName = $request->get('event');
+		$description = $request->get('description');
+		$regular = $request->get('regular');
+		$vip = $request->get('vip');
+		$ticketNumber = $request->get('ticketNumber');
+		$id = $request->get('id');
+		$events = DB::select( DB::raw("UPDATE event_folders set name='$eventName', description='$description',regular_ticket=$regular,vip_ticket=$vip, original_number=$ticketNumber, updated_at=NOW() WHERE id= $id"));
+		return redirect()->route('qr2');
 	}
 
 	/**
@@ -48,6 +58,8 @@ class EventController extends Controller {
 	public function show($id)
 	{
 		//
+		$events = DB::select( DB::raw("SELECT * from event_folders where id=$id"));
+		return view('edit',compact('events'));
 	}
 
 	/**
@@ -56,9 +68,16 @@ class EventController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request)
 	{
 		//
+		$name = $request->get('username');
+		$email = $request->get('address');
+		$number = $request->get('phone');
+		$id = $request->get('id');
+		$events = DB::select( DB::raw("UPDATE users set name = '$name', email='$email',phone='$number',
+			updated_at=NOW() where id = $id"));
+		return redirect()->route('qr3');
 	}
 
 	/**
@@ -70,6 +89,8 @@ class EventController extends Controller {
 	public function update($id)
 	{
 		//
+		$events = DB::select( DB::raw("SELECT * from users where id=$id"));
+		return view('userEdit',compact('events'));
 	}
 
 	/**

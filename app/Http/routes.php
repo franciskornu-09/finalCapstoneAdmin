@@ -23,6 +23,10 @@ Route::get('users','UserController@index');
 
 Route::post('insert','TableController@update');
 
+Route::post('change','EventController@store');
+
+Route::post('userChange','EventController@edit');
+
 Route::get('add','TableController@index');
 
 Route::get('addmap','TableController@create');
@@ -32,6 +36,12 @@ Route::post('addLoc','TableController@store');
 Route::post('message','MessageController@create');
 
 Route::get('graph','GraphController@index');
+
+Route::get('trans','GraphController@create');
+
+Route::get('issues','MessageController@store');
+
+Route::get('logout','EventController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -53,4 +63,23 @@ Route::post('/update/{{id}}',[
     'as' => 'send'
 ]);
 
+$router->get('/edit/{id}',[
+    'uses' => 'EventController@show',
+    'as'   => 'eventEdit'
+]);
+
+$router->get('/events',[
+    'uses' => 'EventController@index',
+    'as'   => 'qr2'
+]);
+
+$router->get('/eventUser',[
+    'uses' => 'UserController@index',
+    'as'   => 'qr3'
+]);
+
+$router->get('/change/{id}',[
+    'uses' => 'EventController@update',
+    'as'   => 'userEdit'
+]);
 

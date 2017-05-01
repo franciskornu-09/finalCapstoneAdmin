@@ -1,0 +1,52 @@
+<?php $__env->startSection('content'); ?>
+
+      <div class="templatemo-content-wrapper">
+        <div class="templatemo-content">
+          <ol class="breadcrumb">
+            <li><a href="<?php echo e(action("DashboardController@index")); ?>">Dashboard</a></li>
+            <li class="active">Users Tab</li>
+          </ol>
+       <div class="templatemo-panels">
+            <div class="row">
+            
+              <div class="col-md-12 col-sm-6 margin-bottom-30">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Users Table</div>
+                  <div class="panel-body">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>User Id</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Created On</th>
+                          <th>Updated On</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach($users as $post): ?>
+                        <tr>
+                          <td><?php echo e($post->id); ?></td>
+                          <td><?php echo e($post->name); ?></td>
+                          <td><?php echo e($post->email); ?></td>
+                          <td><?php echo e($post->created_at); ?></td>
+                          <td><?php echo e($post->updated_at); ?></td>
+                          <td><a type="button" href="<?php echo e(action("DashboardController@index")); ?>" class="btn btn-info" style="border-radius: 10px 10px 10px 10px">Edit</a></td>
+                          <td><button type="button" class="btn btn-danger" style="border-radius: 10px 10px 10px 10px">Delete</button></td>                        
+                       </tr> 
+                      <?php endforeach; ?> 
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>   
+                 
+           </div>            
+      </div>
+   </div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

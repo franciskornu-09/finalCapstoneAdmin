@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
   <title>Event Publisher</title>
   <meta name="keywords" content="" />
   <meta name="description" content="" />
@@ -77,7 +76,6 @@ http://www.templatemo.com/preview/templatemo_415_dashboard
 						</div>
 					</form>
 				</div>
-			<!-- </div> -->
 		</div>
 	</div>
 </div>
